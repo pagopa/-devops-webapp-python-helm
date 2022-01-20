@@ -1,3 +1,7 @@
 webapp-python-alpha:
-  namespace: alpha
+  namespace: devopslab
+  enabled: true
+
+webapp-python-beta:
+  namespace: devopslab
   enabled: true
