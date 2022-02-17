@@ -10,7 +10,7 @@
 replicaCount: 1
 
 image:
-  repository: acrdvoplalab.azurecr.io/devopswebapppython
+  repository: dvopladneuacr.azurecr.io/devopswebapppython
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
