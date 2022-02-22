@@ -14,8 +14,9 @@ spec:
       {{- include "webapp-python-alpha.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmaps.yaml") . | sha256sum }}:{{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -34,6 +35,17 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MY_SECRET_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "webapp-python-alpha.fullname" . }}-alpha
+                  key: my_secret_value
+            - name: MY_CONFIGMAP_VALUE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "webapp-python-alpha.fullname" . }}-alpha
+                  key: my_configmap_value
           ports:
             - name: http
               containerPort: {{ .Values.containers.portNumber }}
