@@ -1,7 +1,10 @@
 webapp-python-alpha:
   namespace: devopslab
   enabled: true
+  repository: dvopladneuacr.azurecr.io/devopswebapppython:1.1.0
+
 
 webapp-python-beta:
   namespace: devopslab
   enabled: true
+  repository: dvopladneuacr.azurecr.io/devopswebapppython:1.0.0
