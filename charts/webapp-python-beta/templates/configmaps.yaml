@@ -4,4 +4,4 @@ metadata:
   name: {{ include "webapp-python-beta.fullname" . }}-beta
   namespace: {{ .Values.namespace }}
 data:
-  my_configmap_value: v3
+  my_configmap_value: beta-1
